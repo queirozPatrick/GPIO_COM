@@ -47,7 +47,8 @@ int main() {
                 // DEV_06: Desligar todos os LEDs
 
             case '6':
-                // DEV_07: Acionar o buzzer por 2 segundos
+                acionar_buzzer();
+                break;
 
 
             case '7':
@@ -84,4 +85,8 @@ void ligar_led(int gpio)
 void desligar_todos_leds()
 
 // Função para acionar o buzzer por 2 segundos
-void acionar_buzzer()
+void acionar_buzzer() {
+    gpio_put(BUZZER, 1);
+    sleep_ms(2000);
+    gpio_put(BUZZER, 0);
+}
