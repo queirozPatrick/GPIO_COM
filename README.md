@@ -103,7 +103,7 @@ Assista ao vídeo demonstrativo clicando [aqui](a ser concluído).
 4. Envie um pull request.
 
  ## Desenvolvolvido por:
-xx
-xx
-xx
-xx
+
+Patrick Queiroz - queirozPatrick
+João Victor Paim - PaimJv
+Heitor Lemos - TorRLD
