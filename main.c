@@ -17,6 +17,13 @@ void init_gpio();
 void ligar_led(int gpio);
 void desligar_todos_leds();
 void acionar_buzzer();
+void tocar_nota_dó();
+void tocar_nota_ré();
+void tocar_nota_mi();
+void tocar_melodia();
+void ligar_led_verde();
+void ligar_led_azul();
+void ligar_led_vermelho();
 
 int main() {
     stdio_init_all(); // Inicialização da UART
@@ -46,7 +53,9 @@ int main() {
 
             case '4':
                 // Ligar todos os LEDs
-                // (Não solicitado neste momento)
+                gpio_put(LED_VERDE, 1);
+                gpio_put(LED_AZUL, 1);
+                gpio_put(LED_VERMELHO, 1);
                 break;
 
             case '5':
@@ -55,8 +64,8 @@ int main() {
                 break;
 
             case '6':
-                // Acionar buzzer por 2 segundos
-                acionar_buzzer();
+                // Tocar melodia com as notas Dó, Ré e Mi
+                tocar_melodia();
                 break;
 
             case '7':
@@ -101,11 +110,41 @@ void desligar_todos_leds() {
     gpio_put(LED_VERMELHO, 0);
 }
 
-// Função para acionar o buzzer por 2 segundos
-void acionar_buzzer() {
-    gpio_put(BUZZER, 1);
-    sleep_ms(2000);
-    gpio_put(BUZZER, 0);
+// Funções para tocar as notas
+void tocar_nota_dó() {
+    for (int i = 0; i < 500; i++) {
+        gpio_put(BUZZER, 1);
+        sleep_us(1910);  // Frequência de 261 Hz (Dó)
+        gpio_put(BUZZER, 0);
+        sleep_us(1910);
+    }
+}
+
+void tocar_nota_ré() {
+    for (int i = 0; i < 500; i++) {
+        gpio_put(BUZZER, 1);
+        sleep_us(1707);  // Frequência de 294 Hz (Ré)
+        gpio_put(BUZZER, 0);
+        sleep_us(1707);
+    }
+}
+
+void tocar_nota_mi() {
+    for (int i = 0; i < 500; i++) {
+        gpio_put(BUZZER, 1);
+        sleep_us(1525);  // Frequência de 329 Hz (Mi)
+        gpio_put(BUZZER, 0);
+        sleep_us(1525);
+    }
+}
+
+void tocar_melodia() {
+    tocar_nota_dó();  // Toca o Dó
+    sleep_ms(500);    // Pausa entre as notas
+    tocar_nota_ré();  // Toca o Ré
+    sleep_ms(500);    // Pausa entre as notas
+    tocar_nota_mi();  // Toca o Mi
+    sleep_ms(500);    // Pausa entre as notas
 }
 
 // Funções específicas para cada LED
