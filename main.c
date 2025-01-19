@@ -32,17 +32,17 @@ int main() {
         switch (comando) {
             case '1':
                 // DEV_02: Ligar LED verde e desligar os demais
-                // [CÓDIGO DO DEV_02 AQUI]
+                ligar_led_verde();
                 break;
 
             case '2':
                 // DEV_03: Ligar LED azul e desligar os demais
-                // [CÓDIGO DO DEV_03 AQUI]
+                ligar_led_azul();
                 break;
 
             case '3':
                 // DEV_04: Ligar LED vermelho e desligar os demais
-                // [CÓDIGO DO DEV_04 AQUI]
+                ligar_led_vermelho();
                 break;
 
             case '4':
@@ -103,4 +103,22 @@ void acionar_buzzer() {
     gpio_put(BUZZER, 1);
     sleep_ms(2000);
     gpio_put(BUZZER, 0);
+}
+
+void ligar_led_verde() {
+    gpio_put(LED_VERDE, 1);
+    gpio_put(LED_AZUL, 0);
+    gpio_put(LED_VERMELHO, 0);
+}
+
+void ligar_led_azul() {
+    gpio_put(LED_VERDE, 0);
+    gpio_put(LED_AZUL, 1);
+    gpio_put(LED_VERMELHO, 0);
+}
+
+void ligar_led_vermelho() {
+    gpio_put(LED_VERDE, 0);
+    gpio_put(LED_AZUL, 0);
+    gpio_put(LED_VERMELHO, 1);
 }
