@@ -4,14 +4,13 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
-// >>> ADICIONAR ESTA LINHA PARA USAR reset_usb_boot <<<
 #include "pico/bootrom.h"
 
 // Definições de GPIOs
-#define LED_VERDE      11
-#define LED_AZUL       12
-#define LED_VERMELHO   13
-#define BUZZER         21
+#define LED_VERDE 11
+#define LED_AZUL  12
+#define LED_VERMELHO 13
+#define BUZZER 21
 
 // Protótipos das funções
 void init_gpio();
@@ -31,42 +30,43 @@ int main() {
 
         switch (comando) {
             case '1':
-                // DEV_02: Ligar LED verde e desligar os demais
-                // [CÓDIGO DO DEV_02 AQUI]
+                // Ligar LED verde e desligar os demais
+                ligar_led_verde();
                 break;
 
             case '2':
-                // DEV_03: Ligar LED azul e desligar os demais
-                // [CÓDIGO DO DEV_03 AQUI]
+                // Ligar LED azul e desligar os demais
+                ligar_led_azul();
                 break;
 
             case '3':
-                // DEV_04: Ligar LED vermelho e desligar os demais
-                // [CÓDIGO DO DEV_04 AQUI]
+                // Ligar LED vermelho e desligar os demais
+                ligar_led_vermelho();
                 break;
 
             case '4':
-                // DEV_05: Ligar todos os LEDs
-                ligar_todos_leds();
+                // Ligar todos os LEDs
+                // (Não solicitado neste momento)
                 break;
 
             case '5':
-                // DEV_06: Desligar todos os LEDs
+                // Desligar todos os LEDs
                 desligar_todos_leds();
                 break;
 
             case '6':
+                // Acionar buzzer por 2 segundos
                 acionar_buzzer();
                 break;
 
             case '7':
-                // DEV_08: Habilitar o modo de gravação via reboot - DEV_01
+                // Habilitar o modo de gravação via reboot - DEV_01
                 printf("Reiniciando para modo de gravação...\n");
                 reset_usb_boot(0, 0);  // <-- Chamada para entrar em modo boot USB
                 break;
 
             default:
-                // Comando inválido ou timeout sem comando
+                // Comando inválido ou timeout
                 break;
         }
     }
@@ -86,11 +86,12 @@ void init_gpio() {
     gpio_set_dir(BUZZER, GPIO_OUT);
 }
 
-// Função para ligar um LED específico
-void ligar_led(int gpio){
-    // [CÓDIGO DO DEV RESPONSÁVEL, se necessário]
-    // Exemplo simples: ligar apenas o LED passado, sem mexer nos demais
-    // gpio_put(gpio, 1);
+// Função para ligar um LED específico (não utilizada diretamente aqui, mas serve de exemplo)
+void ligar_led(int gpio) {
+    gpio_put(LED_VERDE, 0);
+    gpio_put(LED_AZUL, 0);
+    gpio_put(LED_VERMELHO, 0);
+    gpio_put(gpio, 1);
 }
 
 // Função para desligar todos os LEDs
@@ -100,15 +101,28 @@ void desligar_todos_leds() {
     gpio_put(LED_VERMELHO, 0);
 }
 
-void ligar_todos_leds() {
-    gpio_put(LED_VERDE, 1);
-    gpio_put(LED_AZUL, 1);
-    gpio_put(LED_VERMELHO, 1);
-}
-
 // Função para acionar o buzzer por 2 segundos
 void acionar_buzzer() {
     gpio_put(BUZZER, 1);
     sleep_ms(2000);
     gpio_put(BUZZER, 0);
+}
+
+// Funções específicas para cada LED
+void ligar_led_verde() {
+    gpio_put(LED_VERDE, 1);
+    gpio_put(LED_AZUL, 0);
+    gpio_put(LED_VERMELHO, 0);
+}
+
+void ligar_led_azul() {
+    gpio_put(LED_VERDE, 0);
+    gpio_put(LED_AZUL, 1);
+    gpio_put(LED_VERMELHO, 0);
+}
+
+void ligar_led_vermelho() {
+    gpio_put(LED_VERDE, 0);
+    gpio_put(LED_AZUL, 0);
+    gpio_put(LED_VERMELHO, 1);
 }
