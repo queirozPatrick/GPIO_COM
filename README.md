@@ -81,7 +81,7 @@ Desenvolver um programa em linguagem C para:
 
 ## 🎥 Demonstração
 
-Assista ao vídeo demonstrativo clicando [aqui](a ser concluído).
+Assista ao vídeo demonstrativo clicando [aqui](https://youtube.com/shorts/sWMTMwFygSQ?feature=share)
 
 ---
 
@@ -104,6 +104,8 @@ Assista ao vídeo demonstrativo clicando [aqui](a ser concluído).
 
  ## Desenvolvolvido por:
 
-Patrick Queiroz - queirozPatrick
-João Victor Paim - PaimJv
-Heitor Lemos - TorRLD
+Patrick Queiroz queirozPatrick • Collaborator
+
+João Victor Paim PaimJv • Collaborator
+
+Heitor Lemos TorRLD • Collaborator
