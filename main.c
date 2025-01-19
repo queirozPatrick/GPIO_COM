@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
-// >>> ADICIONAR ESTA LINHA PARA USAR reset_usb_boot <<<
 #include "pico/bootrom.h"
 
 // Definições de GPIOs
@@ -31,28 +30,26 @@ int main() {
 
         switch (comando) {
             case '1':
-                // DEV_02: Ligar LED verde e desligar os demais
+                // Ligar LED verde e desligar os demais
                 ligar_led_verde();
                 break;
 
             case '2':
-                // DEV_03: Ligar LED azul e desligar os demais
+                // Ligar LED azul e desligar os demais
                 ligar_led_azul();
                 break;
 
             case '3':
-                // DEV_04: Ligar LED vermelho e desligar os demais
+                // Ligar LED vermelho e desligar os demais
                 ligar_led_vermelho();
                 break;
 
             case '4':
-                // DEV_05: Ligar todos os LEDs
-                // [CÓDIGO DO DEV_05 AQUI]
+                // Ligar todos os LEDs
                 break;
 
             case '5':
-                // DEV_06: Desligar todos os LEDs
-                // [CÓDIGO DO DEV_06 AQUI]
+                // Desligar todos os LEDs
                 break;
 
             case '6':
@@ -60,7 +57,7 @@ int main() {
                 break;
 
             case '7':
-                // DEV_08: Habilitar o modo de gravação via reboot - DEV_01
+                // Habilitar o modo de gravação via reboot - DEV_01
                 printf("Reiniciando para modo de gravação...\n");
                 reset_usb_boot(0, 0);  // <-- Chamada para entrar em modo boot USB
                 break;
@@ -87,16 +84,10 @@ void init_gpio() {
 }
 
 // Função para ligar um LED específico
-void ligar_led(int gpio)
-{
-    // [CÓDIGO DO DEV RESPONSÁVEL]
-}
+void ligar_led(int gpio);
 
 // Função para desligar todos os LEDs
-void desligar_todos_leds()
-{
-    // [CÓDIGO DO DEV RESPONSÁVEL]
-}
+void desligar_todos_leds();
 
 // Função para acionar o buzzer por 2 segundos
 void acionar_buzzer() {
