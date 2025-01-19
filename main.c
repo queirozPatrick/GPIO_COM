@@ -46,13 +46,16 @@ int main() {
 
             case '4':
                 // Ligar todos os LEDs
+                // (Não solicitado neste momento)
                 break;
 
             case '5':
                 // Desligar todos os LEDs
+                desligar_todos_leds();
                 break;
 
             case '6':
+                // Acionar buzzer por 2 segundos
                 acionar_buzzer();
                 break;
 
@@ -63,7 +66,7 @@ int main() {
                 break;
 
             default:
-                // Comando inválido
+                // Comando inválido ou timeout
                 break;
         }
     }
@@ -83,11 +86,20 @@ void init_gpio() {
     gpio_set_dir(BUZZER, GPIO_OUT);
 }
 
-// Função para ligar um LED específico
-void ligar_led(int gpio);
+// Função para ligar um LED específico (não utilizada diretamente aqui, mas serve de exemplo)
+void ligar_led(int gpio) {
+    gpio_put(LED_VERDE, 0);
+    gpio_put(LED_AZUL, 0);
+    gpio_put(LED_VERMELHO, 0);
+    gpio_put(gpio, 1);
+}
 
 // Função para desligar todos os LEDs
-void desligar_todos_leds();
+void desligar_todos_leds() {
+    gpio_put(LED_VERDE, 0);
+    gpio_put(LED_AZUL, 0);
+    gpio_put(LED_VERMELHO, 0);
+}
 
 // Função para acionar o buzzer por 2 segundos
 void acionar_buzzer() {
@@ -96,6 +108,7 @@ void acionar_buzzer() {
     gpio_put(BUZZER, 0);
 }
 
+// Funções específicas para cada LED
 void ligar_led_verde() {
     gpio_put(LED_VERDE, 1);
     gpio_put(LED_AZUL, 0);
