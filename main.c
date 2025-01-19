@@ -8,10 +8,10 @@
 #include "pico/bootrom.h"
 
 // Definições de GPIOs
-#define LED_VERDE 11
-#define LED_AZUL  12
-#define LED_VERMELHO 13
-#define BUZZER 21
+#define LED_VERDE      11
+#define LED_AZUL       12
+#define LED_VERMELHO   13
+#define BUZZER         21
 
 // Protótipos das funções
 void init_gpio();
@@ -47,12 +47,12 @@ int main() {
 
             case '4':
                 // DEV_05: Ligar todos os LEDs
-                // [CÓDIGO DO DEV_05 AQUI]
+                ligar_todos_leds();
                 break;
 
             case '5':
                 // DEV_06: Desligar todos os LEDs
-                // [CÓDIGO DO DEV_06 AQUI]
+                desligar_todos_leds();
                 break;
 
             case '6':
@@ -66,7 +66,7 @@ int main() {
                 break;
 
             default:
-                // Comando inválido
+                // Comando inválido ou timeout sem comando
                 break;
         }
     }
@@ -87,15 +87,23 @@ void init_gpio() {
 }
 
 // Função para ligar um LED específico
-void ligar_led(int gpio)
-{
-    // [CÓDIGO DO DEV RESPONSÁVEL]
+void ligar_led(int gpio){
+    // [CÓDIGO DO DEV RESPONSÁVEL, se necessário]
+    // Exemplo simples: ligar apenas o LED passado, sem mexer nos demais
+    // gpio_put(gpio, 1);
 }
 
 // Função para desligar todos os LEDs
-void desligar_todos_leds()
-{
-    // [CÓDIGO DO DEV RESPONSÁVEL]
+void desligar_todos_leds() {
+    gpio_put(LED_VERDE, 0);
+    gpio_put(LED_AZUL, 0);
+    gpio_put(LED_VERMELHO, 0);
+}
+
+void ligar_todos_leds() {
+    gpio_put(LED_VERDE, 1);
+    gpio_put(LED_AZUL, 1);
+    gpio_put(LED_VERMELHO, 1);
 }
 
 // Função para acionar o buzzer por 2 segundos
